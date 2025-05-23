@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.name }}'s Movies</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+</head>
+<body>
+    <h1>{{ user.name }}'s Movie Collection</h1>
+    <a href="{{ url_for('list_users') }}">Back to Users</a>
+    <h2>Movies:</h2>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster" height="100">
+                <h3>{{ movie.name }} ({{ movie.year }})</h3>
+                <p>Director: {{ movie.director }}</p>
+                <p>Rating: {{ movie.rating }}/10</p>
+                <a href="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}">Update</a>
+
+                <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+
+    <a href="{{ url_for('add_movie', user_id=user.id) }}">Add Movie</a>
+</body>
+</html>
