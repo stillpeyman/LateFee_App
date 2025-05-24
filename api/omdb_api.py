@@ -1,12 +1,17 @@
 import json
 import os
+import logging
 from dotenv import load_dotenv
 import requests
 import time
 
 
+# Set up module-level logger, <__name__> holds name of this module
+logger = logging.getLogger(__name__)
+
+
 load_dotenv()
-API_KEY = os.getenv("API_KEY")
+API_KEY = os.getenv("OMDB_API_KEY")
 HOST = "www.omdbapi.com"
 
 
@@ -30,34 +35,64 @@ def get_movie_data(title, max_retries=3, timeout=5):
                 movie_data = response.json()
 
                 if movie_data.get("Response") == "False":
-                    # Get value of "Error" key from response.json, else return "Unknown Error!"
+                    logger.warning(
+                        f"OMDb API error for {title}': "
+                        f"{movie_data.get('Error', 'Unknown Error')}"
+                        )
                     raise ValueError(movie_data.get("Error", "Unknown Error"))
 
-                with open("data/response.json", "w", encoding="utf-8") as handle:
-                    json.dump(movie_data, handle, indent=4)
+                try:
+                    with open("data/response.json", "w", encoding="utf-8") as handle:
+                        json.dump(movie_data, handle, indent=4)
 
+                except Exception as file_error:
+                    logger.warning(
+                        f"Could not write response.json: {file_error}"
+                        )
+                
+                logger.info(f"Successfully fetched data for '{title}' from OMDb.")
                 return movie_data
 
             else:
-                print(f"Error occurred: {response.status_code}")
+                logger.error(
+                    f"HTTP error from OMDb ({response.status_code}) "
+                    f"for '{title}'."
+                    )
                 # Retrying won't fix HTTP request errors (400s: e.g. Unauthorized, Forbidden, Not found)
                 break
 
         except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
-            print(f"Attempt {attempt} failed: {e}")
+            logger.warning(f"Attempt {attempt} failed: {e}")
 
             if attempt < max_retries:
-                print("Retrying ...")
+                logger.info("Retrying ...")
                 # wait 1 sec before retry
                 time.sleep(1)
 
             else:
-                raise ValueError(f"Failed to fetch data from OMDb after {max_retries} attempts.")
+                logger.error(
+                    f"Failed to fetch data from OMDb for "
+                    f"'{title}' after {max_retries} attempts."
+                    )
+                raise ValueError(
+                    f"Failed to fetch data from OMDb "
+                    f"after {max_retries} attempts."
+                    )
 
         except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+            logger.error(
+                f"An unexpected requests error occurred "
+                f"for '{title}': {e}")
+            
             # Unlikely to succeed on retry
             break
+    
+    # Ensure the function never returns <None>, prevent AttributeError
+    logger.error(
+        f"Failed to fetch data from OMDb "
+        f"for '{title}': Unknown error."
+        )
+    raise ValueError("Failed to fetch data from OMDb: Unknown error.")
 
 
 

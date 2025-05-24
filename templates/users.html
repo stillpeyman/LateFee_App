@@ -7,7 +7,18 @@
 </head>
 <body>
     <h1>Users</h1>
-    <a href="{{ url_for('add_user') }}"></a>
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <a href="{{ url_for('add_user') }}">
         <button type="button">Add New User</button>
     </a>
     <ul>
