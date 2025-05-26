@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LateFee Home</title>
+    <title>LateFee</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Welcome to LateFee!</h1>
-    <p>
-        Where the only thing overdue is a rewatch!
-    </p>
-    <p>
-        <a href="{{ url_for('list_users') }}">Go to Users</a>
-    </p>
+    <div class="letterbox">
+        <div class="letterbox-bar top"></div>
+        <div class="center-banner">
+            <a href="{{ url_for('list_users') }}" class="latefee-logo-link">
+                <span class="latefee-logo">LateFee</span>
+            </a>
+            <div class="claim">Where the only thing overdue is a rewatch!</div>
+        </div>
+        <div class="letterbox-bar bottom"></div>
+    </div>
 </body>
 </html>

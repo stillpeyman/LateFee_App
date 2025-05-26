@@ -15,21 +15,28 @@ API_KEY = os.getenv("OMDB_API_KEY")
 HOST = "www.omdbapi.com"
 
 
-def get_movie_data(title, max_retries=3, timeout=5):
+def get_movie_data(title, year=None, max_retries=3, timeout=5):
     """
-    Fetch movie data from OMDb and save it to 'response.json'.
-    Retry if the request fails due to network issues.
-    Return the movie data as a dictionary.
+    Fetch movie data from OMDb by title (optionally using year too) and save it to 'response.json'. Retry if the request fails due to network issues. Return the movie data as a dictionary.
 
     Raises:
         ValueError: If movie not found or API returns an error.
     """
-    api_url = f"http://{HOST}/?apikey={API_KEY}&t={title}"
+    params = {
+        'apikey': API_KEY,
+        't': title
+    }
+
+    if year:
+        # Only add year if provided
+        params['y'] = year
+
+    api_url = f"http://{HOST}/"
 
     # Retry logic
     for attempt in range(1, max_retries + 1):
         try:
-            response = requests.get(api_url, timeout=timeout)
+            response = requests.get(api_url, params=params, timeout=timeout)
 
             if response.status_code == 200:
                 movie_data = response.json()

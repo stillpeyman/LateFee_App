@@ -1,32 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Users - MovieWeb App</title>
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" /> -->
+    <title>LateFee Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Users</h1>
-    
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <a href="{{ url_for('add_user') }}">
-        <button type="button">Add New User</button>
-    </a>
-    <ul>
-        {% for user in users %}
-            <li>
-                <a href="{{ url_for('user_movies', user_id=user.id) }}">{{ user.name }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <header class="latefee-header">
+        <div class="banner">
+            <a href="{{ url_for('index') }}" class="latefee-logo-link">
+                <span class="latefee-logo">LateFee</span>
+            </a>
+            <div class="claim">Where the only thing overdue is a rewatch!</div>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Users</h1>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flashes">
+              {% for message in messages %}
+                <div>{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form method="get" action="">
+            <select name="user_id" class="user-dropdown" onchange="if(this.value) window.location.href=this.value;">
+                <option value="">Select a user...</option>
+                {% for user in users %}
+                    <option value="{{ url_for('user_movies', user_id=user.id) }}">{{ user.name }}</option>
+                {% endfor %}
+            </select>
+        </form>
+        <a href="{{ url_for('add_user') }}">
+            <button type="button" class="add-btn">Add New User</button>
+        </a>
+    </div>
 </body>
 </html>

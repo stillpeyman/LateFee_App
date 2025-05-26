@@ -1,0 +1,660 @@
+/* --- LATEFEE CSS STYLESHEET - UPDATED BLUE THEME --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --monolith-black: #000000;
+  --primary-blue: #26408B;
+  --logo-teal: #A6CFD5;
+  --background-mint: #C2E7D9;
+  --form-container-blue: #2B3A67;
+  --button-coral: #E84855;
+  --back-link-navy: #0D0221;
+  --space-white: #F4F4F4;
+  --void-pink: #FF9B71;
+  --void-gray: #5E5E5E;
+  --lunar-gray: #D0D0D0;
+  --main-font: 'Futura', 'Trebuchet MS', Arial, sans-serif;
+}
+
+/* --- GENERAL --- */
+body {
+  font-family: var(--main-font);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Homepage specific styling */
+body:has(.letterbox) {
+  background: var(--monolith-black);
+  color: var(--space-white);
+}
+
+/* All other pages background */
+body:not(:has(.letterbox)) {
+  background: var(--background-mint);
+  color: var(--monolith-black);
+}
+
+/* --- HOMEPAGE LETTERBOX --- */
+.letterbox {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  position: relative;
+}
+
+.letterbox-bar {
+  width: 100vw;
+  height: 16vh;
+  min-height: 60px;
+  max-height: 150px;
+  background: var(--monolith-black);
+  flex-shrink: 0;
+}
+
+.center-banner {
+  background: var(--primary-blue);
+  width: 100vw;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10em 1em 10em 1em;
+  min-height: 40vh;
+  margin: 0;
+  box-shadow: 0 8px 40px rgba(38, 64, 139, 0.18);
+}
+
+/* --- LOGO & CLAIM --- */
+.center-banner .latefee-logo,
+.center-banner .claim,
+.latefee-header .latefee-logo,
+.latefee-header .claim {
+  display: block;
+  max-width: 90vw;
+  margin-left: auto;
+  margin-right: auto;
+  word-break: break-word;
+}
+
+.latefee-logo {
+  color: var(--logo-teal);
+  font-size: 6rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  transform: skewY(-10deg);
+  text-align: center;
+  line-height: 1.1;
+  text-shadow: 2px 8px 12px rgba(0,0,0,0.3), 0 2px 10px rgba(0,0,0,0.18);
+}
+
+.latefee-logo-link {
+  text-decoration: none;
+  border-bottom: none;
+  color: inherit;
+}
+
+.claim {
+  color: var(--logo-teal);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin: 3.5em auto 0 auto;
+}
+
+/* --- HEADER --- */
+.latefee-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 999;
+  background: var(--primary-blue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 24px rgba(38, 64, 139, 0.15);
+  padding: 1.8em 0;
+}
+
+.latefee-header .latefee-logo {
+  font-size: 3rem;
+  color: var(--logo-teal);
+}
+
+.latefee-header .claim {
+  font-size: 1.05rem;
+  margin: 2.5em auto 0 auto;
+  color: var(--logo-teal);
+}
+
+/* --- CONTAINER --- */
+.container {
+  background: var(--form-container-blue);
+  border-radius: 16px;
+  padding: 2.5em;
+  margin: 0 auto 3em auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  margin-top: 220px;
+  max-width: 800px;
+  width: 90%;
+}
+
+.container h1 {
+  font-style: italic;
+  margin-top: 2.5px;
+  color: var(--logo-teal);
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+/* --- MOVIE PAGE STYLING (NO CONTAINER) --- */
+.movie-page-content {
+  padding: 0 2vw;
+  margin-top: 220px;
+}
+
+.movie-page-content .back-link {
+  display: inline-block;
+  color: var(--button-coral) !important;
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  /* margin-bottom: 1em; */
+  transition: color 0.3s ease;
+}
+
+.movie-page-content .back-link:hover {
+  color: var(--primary-blue) !important;
+  text-decoration: underline;
+}
+
+.movie-page-content h1 {
+  color: var(--primary-blue);
+  text-align: center;
+  margin-bottom: 1em;
+  font-style: italic;
+  font-size: 2.5rem;
+}
+
+.movie-page-content .add-movie-btn {
+  display: block;
+  width: fit-content;
+  margin: 2em auto;
+  background: var(--button-coral);
+  color: var(--logo-teal);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75em 2em;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(232, 72, 85, 0.2);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+
+.movie-page-content .add-movie-btn:hover {
+  background: #d43d4a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(232, 72, 85, 0.3);
+}
+
+/* --- BUTTONS --- */
+button,
+.add-btn {
+  background: var(--button-coral);
+  color: var(--logo-teal);
+  border: none;
+  border-radius: 8px;
+  padding: 0.75em 2em;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5em;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(232, 72, 85, 0.2);
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+button:hover,
+.add-btn:hover {
+  background: #d43d4a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(232, 72, 85, 0.3);
+}
+
+/* Back to users/movies links */
+.action-link {
+  background: none;
+  color: var(--button-coral) !important;
+  border: none;
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-right: 0.5em;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-bottom: 1em;
+}
+
+.action-link:hover {
+  color: var(--logo-teal) !important;
+  text-decoration: underline;
+}
+
+/* Movie detail overlay action links */
+.movie-details .action-link {
+  color: var(--logo-teal) !important;
+  font-weight: 500;
+  margin: 0;
+  margin-right: 0.5em;
+}
+
+.movie-details .action-link:hover {
+  color: var(--space-white) !important;
+}
+
+/* --- FORMS/INPUTS --- */
+form, .flashes {
+  margin-bottom: 2em;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5em;
+  gap: 1em;
+}
+
+.form-row label {
+  color: var(--logo-teal);
+  font-size: 1rem;
+  font-weight: 600;
+  width: 150px;
+  flex-shrink: 0;
+}
+
+/* Default form styling - ensures all forms look consistent */
+.container form > div,
+.container form > p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5em;
+  gap: 1em;
+}
+
+.container form > div label,
+.container form > p label {
+  color: var(--logo-teal);
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 150px;
+  flex-shrink: 0;
+}
+
+input, select, textarea {
+  background: var(--void-gray);
+  color: var(--space-white);
+  border: 2px solid var(--lunar-gray);
+  border-radius: 8px;
+  padding: 0.75em 1em;
+  font-size: 1rem;
+  flex: 1;
+  max-width: 400px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--logo-teal);
+  outline: none;
+}
+
+/* User dropdown specific styling */
+.user-dropdown {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1em;
+}
+
+/* Labels not in form-row */
+label:not(.form-row label):not(.container form > div label):not(.container form > p label) {
+  color: var(--logo-teal);
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+/* --- MOVIE LIST --- */
+ul.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5em;
+  padding: 0;
+  margin: 2em auto;
+  max-width: 98vw;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+/* --- MOVIE CARD --- */
+.movie-card {
+  flex: 1 1 clamp(140px, 22vw, 200px); 
+  max-width: clamp(160px, 24vw, 220px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--void-pink);
+  border-radius: 12px;
+  padding: 0.8em;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.18s ease;
+  position: relative;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  z-index: 2;
+}
+
+.movie-card img {
+  border-radius: 8px;
+  margin-bottom: 0.6em;
+  max-width: 140px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.28);
+  transition: filter 0.3s ease;
+}
+
+.movie-card:hover img {
+  filter: brightness(0.4);
+}
+
+/* --- MOVIE DETAILS OVERLAY --- */
+.movie-card .movie-details {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(43, 58, 103, 0.85);
+  color: var(--logo-teal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  padding: 1em;
+  border-radius: 12px;
+}
+
+.movie-card:hover .movie-details {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.movie-card .movie-details h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0.2em 0;
+  color: var(--logo-teal);
+}
+
+.movie-card .movie-details p {
+  font-size: 0.85rem;
+  color: var(--space-white);
+  margin: 0.3em 0;
+}
+
+.movie-card .movie-details .actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+  margin-top: 0.8em;
+}
+
+.edit-delete-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- USER LIST STYLING --- */
+.container:has(.user-dropdown) {
+  background: var(--form-container-blue);
+  border-radius: 16px;
+  padding: 2.5em;
+  margin: 220px auto 3em auto;
+  max-width: 800px;
+  width: 90%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+}
+
+.container:has(.user-dropdown) h1 {
+  color: var(--logo-teal);
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+/* === Eye of the Duck Page Styles === */
+
+.eye-of-the-duck-title h1{
+    font-family: var(--main-font);
+    color: #c0392b;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 4px #111;
+}
+
+.eye-of-the-duck-director {
+    color: #0D0221; /* Change this to any color you like */
+    font-family: var(--main-font);
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.eye-of-the-duck-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+    margin: 32px auto;
+    max-width: 900px;
+}
+
+.eye-of-the-duck-poster {
+    flex-shrink: 0;
+    width: 220px;
+    max-width: 40vw;
+    margin: 0;
+}
+
+.eye-of-the-duck-explanation {
+    color: #0D0221;
+    border-radius: 8px;
+    padding: 24px 32px;
+    margin: 0;
+    max-width: none;
+    font-size: 1.2em;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    font-family: var(--main-font);
+}
+
+/* .eye-of-the-duck-poster {
+    display: block;
+    margin: 24px auto 0 auto;
+    max-width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+} */
+
+
+/* --- FLASHES --- */
+.flashes, .error-message {
+  color: var(--button-coral);
+  margin-bottom: 1.5em;
+  background: rgba(232, 72, 85, 0.1);
+  padding: 1em;
+  border-radius: 8px;
+  border-left: 4px solid var(--button-coral);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .container, .user-list {
+    max-width: 95%;
+    padding: 2em 1.5em;
+  }
+  
+  ul.movie-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    /* padding: 2 2vw; */
+  }
+  
+  .movie-card {
+    width: 160px;
+  }
+  
+  .movie-card img {
+    max-width: 120px;
+  }
+
+  .form-row,
+  .container form > div,
+  .container form > p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+
+  .form-row label,
+  .container form > div label,
+  .container form > p label {
+    min-width: auto;
+  }
+
+  .form-row input,
+  .form-row select,
+  .form-row textarea,
+  .container form > div input,
+  .container form > div select,
+  .container form > div textarea,
+  .container form > p input,
+  .container form > p select,
+  .container form > p textarea {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .latefee-logo {
+    font-size: 2.2rem;
+  }
+  
+  .claim {
+    font-size: 1.05rem;
+  }
+  
+  .latefee-header .latefee-logo {
+    font-size: 1.6rem;
+  }
+  
+  .latefee-header .claim {
+    font-size: 0.92rem;
+  }
+  
+  .center-banner {
+    padding: 2.5em 0.5em;
+  }
+  
+  .latefee-header {
+    padding: 1.1em 0;
+  }
+  
+  .container {
+    width: 95%;
+    padding: 1.5em;
+    margin-top: 180px;
+  }
+  
+  .movie-page-content {
+    margin-top: 180px;
+  }
+  
+  ul.movie-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 0 4vw;
+  }
+  
+  .movie-card {
+    width: 90vw;
+    max-width: 300px;
+  }
+
+  .user-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+
+  button, .add-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* === Responsive adjustments for Eye of the Duck === */
+@media (max-width: 600px) {
+    .eye-of-the-duck-explanation {
+        padding: 1em 0.5em;
+        font-size: 1em;
+        max-width: 98vw;
+    }
+    .eye-of-the-duck-title {
+        font-size: 1.2em;
+    }
+    .eye-of-the-duck-poster {
+        max-width: 100%;
+        margin-top: 1em;
+    }
+}
+
+@media (max-width: 800px) {
+    .eye-of-the-duck-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        max-width: 98vw;
+        margin: 16px auto;
+    }
+    .eye-of-the-duck-poster {
+        width: 100%;
+        max-width: 220px;
+        margin: 0 auto;
+    }
+    .eye-of-the-duck-explanation {
+        padding: 16px 8px;
+        font-size: 1em;
+        width: 100%;
+    }
+}

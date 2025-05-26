@@ -1,0 +1,120 @@
+[2025-05-25 17:57:07,952] INFO in app: User 'Peyman' added.
+[2025-05-25 17:57:13,698] INFO in app: User 'Hesam' added.
+[2025-05-25 17:57:25,238] INFO in app: Movie '2001: A Space Odyssey' added for user 1.
+[2025-05-25 17:57:51,999] INFO in app: Movie 'There Will Be Blood' added for user 1.
+[2025-05-25 17:58:27,289] INFO in app: Movie 'A Clockwork Orange' added for user 2.
+[2025-05-25 18:06:55,947] WARNING in app: 404 Not found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-25 18:41:45,838] ERROR in app: Unhandled Exception: Could not build url for endpoint 'index'. Did you mean 'add_user' instead?
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/app.py", line 61, in list_users
+    return render_template('users.html', users=users)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/templating.py", line 150, in render_template
+    return _render(app, template, context)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/templating.py", line 131, in _render
+    rv = template.render(context)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/jinja2/environment.py", line 1295, in render
+    self.environment.handle_exception()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/templates/users.html", line 10, in top-level template code
+    <a href="{{ url_for('index') }}" class="latefee-logo-link">
+    ^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 1121, in url_for
+    return self.handle_url_build_error(error, endpoint, values)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/flask/app.py", line 1110, in url_for
+    rv = url_adapter.build(  # type: ignore[union-attr]
+        endpoint,
+    ...<3 lines>...
+        force_external=_external,
+    )
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site-packages/werkzeug/routing/map.py", line 924, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'index'. Did you mean 'add_user' instead?
+[2025-05-25 19:25:22,799] INFO in app: User 'Maryam' added.
+[2025-05-25 19:26:01,879] INFO in app: Movie '2001: A Space Odyssey' (ID 1) updated for user 1.
+[2025-05-25 20:11:09,884] INFO in app: Movie 'Anora' added for user 1.
+[2025-05-25 20:22:01,715] INFO in app: Movie ID 4 deleted for user 1.
+[2025-05-25 20:24:17,968] INFO in app: Movie 'Anora' added for user 1.
+[2025-05-25 20:28:30,966] INFO in app: Movie ID 4 deleted for user 1.
+[2025-05-25 20:28:35,946] INFO in app: Movie 'Anora' added for user 1.
+[2025-05-25 20:35:58,115] ERROR in app: Unhandled Exception: could not convert string to float: 'N/A'
+Traceback (most recent call last):
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/app.py", line 140, in add_movie
+    rating=float(movie_data.get('imdbRating', 0)),
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'N/A'
+[2025-05-25 20:36:14,999] ERROR in app: Unhandled Exception: could not convert string to float: 'N/A'
+Traceback (most recent call last):
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/app.py", line 140, in add_movie
+    rating=float(movie_data.get('imdbRating', 0)),
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'N/A'
+[2025-05-25 20:36:30,562] INFO in app: Movie 'The Lion King' added for user 3.
+[2025-05-25 20:37:40,724] ERROR in app: Unhandled Exception: could not convert string to float: 'N/A'
+Traceback (most recent call last):
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/app.py", line 140, in add_movie
+    rating=float(movie_data.get('imdbRating', 0)),
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'N/A'
+[2025-05-25 20:38:09,908] INFO in app: Movie 'Peter Pan' added for user 3.
+[2025-05-25 20:38:22,493] INFO in app: Movie 'Mary Poppins' added for user 3.
+[2025-05-25 20:38:45,478] WARNING in app: 404 Not found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-25 20:38:57,757] INFO in app: Movie ID 7 deleted for user 3.
+[2025-05-25 20:38:57,791] WARNING in app: 404 Not found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-25 20:49:34,779] INFO in app: Movie 'De-as fi Peter Pan' added for user 3.
+[2025-05-25 20:49:34,865] WARNING in app: 404 Not found: /users/N/A
+[2025-05-25 20:49:47,287] WARNING in app: 404 Not found: /users/N/A
+[2025-05-25 20:50:10,815] INFO in app: Movie 'Harry Potter and the Deathly Hallows: Part 2' added for user 3.
+[2025-05-25 20:50:10,885] WARNING in app: 404 Not found: /users/N/A
+[2025-05-25 20:50:19,709] INFO in app: Movie ID 7 deleted for user 3.
+[2025-05-25 20:50:51,322] INFO in app: Movie 'Harry Potter and the Deathly Hallows: Part 1' added for user 3.
+[2025-05-25 20:50:57,580] INFO in app: Movie ID 8 deleted for user 3.
+[2025-05-25 20:51:05,172] INFO in app: Movie 'Harry Potter and the Deathly Hallows: Part 2' added for user 3.
+[2025-05-25 20:51:31,227] INFO in app: Movie 'Mufasa: The Lion King' added for user 3.
+[2025-05-25 22:12:07,267] WARNING in app: 404 Not found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-25 22:12:13,997] WARNING in app: 404 Not found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-25 22:13:00,115] WARNING in app: 404 Not found: /.well-known/appspecific/com.chrome.devtools.json
+[2025-05-25 22:14:15,755] ERROR in app: Unhandled Exception: invalid literal for int() with base 10: '2024–'
+Traceback (most recent call last):
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/app.py", line 140, in add_movie
+    year=int(movie_data.get('Year', 0)),
+         ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: '2024–'
+[2025-05-25 22:16:59,394] ERROR in app: Unhandled Exception: could not convert string to float: 'N/A'
+Traceback (most recent call last):
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/venv/lib/python3.13/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/peymanfarahani/VisualStudioProjects/CODIO/LateFee_app/app.py", line 141, in add_movie
+    rating=float(movie_data.get('imdbRating', 0)),
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: could not convert string to float: 'N/A'

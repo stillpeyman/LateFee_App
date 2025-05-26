@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Add User</title>
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Add User</h1>
-    <form method="post" action="{{ url_for('add_user') }}">
-        <label for="name">User Name:</label>
-        <input type="text" id="name" name="name" required>
-        <button type="submit">Add User</button>
-    </form>
-
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-
-    <a href="{{ url_for('list_users') }}">Back to Users List</a>
+    <header class="latefee-header">
+        <div class="banner">
+            <a href="{{ url_for('index') }}" class="latefee-logo-link">
+                <span class="latefee-logo">LateFee</span>
+            </a>
+            <div class="claim">Where the only thing overdue is a rewatch!</div>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Add User</h1>
+        <form method="post" action="{{ url_for('add_user') }}">
+            <div class="form-row">
+                <label for="name">User Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <button type="submit" class="add-btn">Add User</button>
+        </form>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flashes">
+              {% for message in messages %}
+                <div>{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <a href="{{ url_for('list_users') }}" class="action-link">&larr; Back to Users</a>
+    </div>
 </body>
 </html>

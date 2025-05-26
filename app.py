@@ -6,12 +6,14 @@ from dotenv import load_dotenv
 import logging
 from logging.handlers import RotatingFileHandler
 import os
+import openai
 
 
 # App and Config
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
+openai.api_key = os.getenv('OPENAI_API_KEY')
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 db_path = os.path.join(basedir, 'data', 'latefee_movies.db')
@@ -45,7 +47,7 @@ app.logger.setLevel(logging.INFO)
 # Routes
 
 @app.route('/')
-def home():
+def index():
     """
     Render the home page of the LateFee App.
     """
@@ -105,13 +107,14 @@ def add_movie(user_id):
     """
     if request.method == 'POST':
         title = request.form.get('name')
+        year = request.form.get('year')
 
         if not title:
             flash('Movie title is required.')
             return redirect(url_for('add_movie', user_id=user_id))
         
         try:
-            movie_data = omdb(title)
+            movie_data = omdb(title, year=year)
 
         except ValueError as e:
             app.logger.warning(f"OMDb API error for '{title}': {e}")
@@ -220,6 +223,55 @@ def delete_movie(user_id, movie_id):
     return redirect(url_for('user_movies', user_id=user_id))
 
 
+@app.route('/users/<int:user_id>/<int:movie_id>/eye_of_the_duck')
+def eye_of_the_duck(movie_id, user_id):
+    movie = Movie.query.get(movie_id)
+    if not movie:
+        flash('Movie not found.')
+        return redirect(url_for('user_movies', user_id=user_id))
+    
+    prompt = (
+        f"In film theory, the 'Eye of the Duck' " 
+        f"is the most essential scene " 
+        f"that reveals the heart or core of a movie. "
+        f"For the movie '{movie.name}' "
+        f"(directed by {movie.director}, {movie.year}), "
+        f"describe what the 'Eye of the Duck' scene might be and explain why."
+    )
+
+    try:
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                    {
+                        "role": "system",
+                        "content": "You are a film critic who explains the 'Eye of the Duck' scene for movies."
+                    },
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ]
+            )
+        print(response)
+        explanation = response.choices[0].message.content
+    
+    except Exception as e:
+        explanation = (
+            f"Sorry, there was an error generating "
+            f"the 'Eye of the Duck' explanation: {e}"
+        )
+    
+    return render_template(
+        'eye_of_the_duck.html', 
+        movie=movie, 
+        explanation=explanation
+        )
+
+    
+
+
+
 # Error Handlers
 
 @app.errorhandler(404)
@@ -247,11 +299,6 @@ def method_not_allowed_error(error):
         'error.html', 
         message="405 Method Not Allowed: That method is not allowed for this URL."
         ), 405
-
-
-@app.errorhandler(415)
-def unsupported_media_type(error):
-    return jsonify({"error": "Request must be JSON", "message": error.description}), 415
 
 
 @app.errorhandler(Exception)

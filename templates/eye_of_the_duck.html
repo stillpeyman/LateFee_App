@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eye of the Duck - {{ movie.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="latefee-header">
+        <div class="banner">
+            <a href="{{ url_for('index') }}" class="latefee-logo-link">
+                <span class="latefee-logo">LateFee</span>
+            </a>
+            <div class="claim">Where the only thing overdue is a rewatch!</div>
+        </div>
+    </header>
+    <div class="movie-page-content">
+        <a href="{{ url_for('user_movies', user_id=movie.user_id) }}" class="back-link">&larr; Back to {{ movie.user.name }}'s Movies</a>
+        <h1 class="eye-of-the-duck-title">
+            Eye of the Duck for <span style="color:#E84855">{{ movie.name }}</span>
+        </h1>
+        <h3 class="eye-of-the-duck-director">
+            Directed by {{ movie.director }} ({{ movie.year }})      
+        </h3>
+        <div class="eye-of-the-duck-flex">
+            <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster" class="eye-of-the-duck-poster">
+            <div class="eye-of-the-duck-explanation">
+                <p>{{ explanation }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
